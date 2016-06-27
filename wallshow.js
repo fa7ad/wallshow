@@ -48,3 +48,5 @@ if(require.main === module){
     cycleWallpapers(process.argv[2], process.argv[3]||15);
   }
 }
+
+module.exports = cycleWallpapers;
