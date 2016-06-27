@@ -14,38 +14,47 @@ USAGE: wallshow <DIR> [<interval>]
 
 
 function cycleWallpapers(directory, interval) {
+  let Wallpapers = glob.sync(path.join(directory, '**/*.*'));
+
   const rl = readline.createInterface({
     input: process.stdin,
     output: process.stdout
   });
 
-  let Wallpapers = glob.sync(path.join(directory, '**/*.*'));
-
-  console.log('Press Ctrl+C twice to exit.');
-  console.log('Press ENTER to skip any wallpaper.');
-
   const selectWallpaper = () => {
-    let url = _.pullAt(Wallpapers, _.random(0, Wallpapers.length - 1))[0];
-
+    let [url] = _.pullAt(Wallpapers, _.random(0, Wallpapers.length - 1));
     wallpaper.set(url).then(console.log(`Wallpaper set to ${url}`));
-    if(Wallpapers.length === 1){
+    if(Wallpapers.length === 0){
       clearInterval(TheInterval);
       rl.close();
       return;
     }
   }
-  var TheInterval = setInterval(selectWallpaper, (interval*1000)+1);
-  rl.on('line', selectWallpaper);
+
+
+  console.log('Press Ctrl+C to exit.');
+  console.log('Press ENTER to skip any wallpaper.');
+
+  let TheInterval = setInterval(selectWallpaper, (interval*1000)+1);
+
+  rl
+    .on('line', selectWallpaper)
+    .on('SIGINT', () => {
+      clearInterval(TheInterval);
+      rl.close();
+    });
 }
 
 if(require.main === module){
-  if(!process.argv[2]){
+  const [,,dirOrHelp, duration] = process.argv;
+
+  if(!dirOrHelp){
     console.log('No directory specified.');
     console.log('Run "wallshow -h" to see help.');
-  }else if(process.argv[2] === '-h' || process.argv[2] === '--help'){
+  }else if(dirOrHelp === '-h' || dirOrHelp === '--help'){
     console.log(helpDoc);
   }else{
-    cycleWallpapers(process.argv[2], process.argv[3]||15);
+    cycleWallpapers(dirOrHelp, duration || 15);
   }
 }
 
