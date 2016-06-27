@@ -18,7 +18,7 @@ wallshow('/le/path/to/wallpapers', interval);
 
 ## License: MIT
 
-Wallshow - Random wallpaper slideshow using node.
+Wallshow - Random wallpaper slideshow using node.  
 Copyright © 2016 Fahad Hossain <oneloopone@gmail.com>
 
 Permission is hereby granted, free of charge, to any person obtaining
