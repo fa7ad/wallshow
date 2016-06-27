@@ -1,0 +1,31 @@
+{
+  "name": "wallshow",
+  "version": "1.0.0",
+  "description": "Slide show by randomly setting the wallpaper",
+  "main": "wallshow.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "bin": {
+    "wallshow": "wallshow.js"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/fa7ad/wallshow.git"
+  },
+  "keywords": [
+    "wallpaper",
+    "random"
+  ],
+  "author": "Fahad Hossain <8bit.demoncoder@gmail.com> (http://fahad.gq/)",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/fa7ad/wallshow/issues"
+  },
+  "homepage": "https://github.com/fa7ad/wallshow#readme",
+  "dependencies": {
+    "glob": "^7.0.5",
+    "lodash": "^4.13.1",
+    "wallpaper": "^2.1.1"
+  }
+}
