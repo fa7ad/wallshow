@@ -14,7 +14,7 @@ USAGE: wallshow <DIR> [<interval>]
 
 
 function cycleWallpapers(directory, interval) {
-  let Wallpapers = glob.sync(path.join(directory, '**/*.*'));
+  let Wallpapers = glob.sync(path.join(directory, '**', '*.*'));
 
   const rl = readline.createInterface({
     input: process.stdin,
